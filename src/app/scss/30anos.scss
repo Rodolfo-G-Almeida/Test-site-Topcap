@@ -1,0 +1,90 @@
+.box-landing-30-anos {
+    padding: 10rem 0 6rem;
+    background-color: #7c6f6b;
+
+    color: white;
+    font-size: 2rem;
+
+    .header-landing {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 8rem;
+
+        @include phone {
+            margin-bottom: 4rem;
+        }
+
+        .logo-landing {
+            width: 20rem;
+            height: 14.3rem;
+            
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .info-header {
+            margin-left: 4rem;
+            text-align: center;
+            line-height: 1;
+            position: relative;
+            font-size: 2rem;
+            span {
+                display: block;
+                margin-bottom: 1.2rem;
+                font-weight: 700;
+                font-size: 3rem;
+            }
+
+            .vetor-landing {
+                position: absolute;
+                bottom: 0rem;
+                left: 4rem;
+
+                @include phone {
+                    bottom: -10px;
+                    left: 30px;
+
+                    img {
+                        width: 150px;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .info-content {
+        width: 80%;
+        max-width: 1000px;
+        margin: 0 auto;
+
+        .image {
+            width: 100%;
+            img {
+                margin: 0 auto 3rem;
+                display: block;
+
+                @include phone {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    h4 {
+        font-family: "Playwrite HR", cursive;
+        font-size: 4rem;
+        font-weight: 400;
+        text-align: center;
+        margin: 6rem 0;
+
+        @include phone {
+            font-size: 3rem;
+            line-height: 1.2;
+        }
+    }
+}

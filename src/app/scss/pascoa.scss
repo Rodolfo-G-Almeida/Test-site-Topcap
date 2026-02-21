@@ -1,0 +1,18 @@
+.pascoa-page {
+   @include desktopUpToFullHd {
+      img {
+         width: 100%;
+         height: auto;
+      }
+  } 
+   @include phone {
+      &:first-child {
+         // padding-top: 72px;
+         background-color: #ffea37;
+      }
+      img {
+         width: 100%;
+         height: auto;
+      }
+  } 
+}

@@ -1,0 +1,72 @@
+@mixin insert-animation($time) {
+  -webkit-transition: all $time ease-out;
+  -moz-transition: all $time ease-out;
+  -o-transition: all $time ease-out;
+  transition: all $time ease-out;
+}
+
+@mixin insert-font-awesome-icon($icon) {
+   content: $icon;
+   font-family: 'Font Awesome\ 5 Free';
+   font-weight: 900;
+ }
+ 
+ @mixin phonexxs {
+   @media (max-width: #{$break-xxs - 1}) {
+     @content;
+   }
+ }
+ 
+ @mixin phonexs {
+   @media (max-width: #{$break-xs - 1}) {
+     @content;
+   }
+ }
+ 
+ @mixin phone {
+   @media (max-width: #{$break-sm - 1}) {
+     @content;
+   }
+ }
+ 
+ @mixin tablet {
+   @media (max-width: #{$break-md - 1}) {
+     @content;
+   }
+ }
+ 
+ @mixin tabletPro {
+   @media (min-width: 768px) and (max-width: 1024px) {
+     @content;
+   }
+ }
+ 
+ @mixin small-desktop {
+   @media (min-width: #{$break-md - 1}) and (max-width: #{$break-lg - 1}) {
+     @content;
+   }
+ }
+
+ @mixin notebooks {
+   @media (min-width: #{$break-lg - 1}) and (max-width: #{$break-xg - 1}) {
+     @content;
+   }
+ }
+ 
+ @mixin large-desktop {
+   @media (min-width: #{$break-md - 1}) and (max-width: #{$break-xg}) {
+     @content;
+   }
+ }
+
+ @mixin desktopUpToHd {
+  @media (max-width: #{$break-xg}) {
+    @content;
+  }
+}
+
+@mixin desktopUpToFullHd {
+  @media (max-width: #{$break-xxg}) {
+    @content;
+  }
+}

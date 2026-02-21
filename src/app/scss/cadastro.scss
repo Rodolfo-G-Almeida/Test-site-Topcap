@@ -1,0 +1,144 @@
+.container-cadastro {
+   background: rgb(46,49,146);
+   background: linear-gradient(90deg, rgba(46,49,146,1) 0%, rgba(236,0,140,1) 100%);
+
+   width: 100%;
+   padding: 8rem 0;
+
+   .txt-cadastrese {
+      color: #fff;
+      width: 80%;
+      height: 100%;
+      position: relative;
+
+      small {
+         display: block;
+      }
+
+      h2 {
+         font-weight: 700;
+         font-size: 3.6rem;
+         margin-bottom: 3rem;
+      }
+
+      h3 {
+         font-size: 1.8rem;
+         margin-bottom: 3rem;
+      }
+
+      p {
+         font-size: 1.4rem;
+         margin-bottom: 2rem;
+      }
+
+      a.link-file {
+         color: #fff;
+         transition: color 0.3s;
+
+         &:hover {
+            color: var(--color-secondary);
+            text-decoration: none;
+         }
+      }
+
+      a.asteristic {
+         font-size: 1.2rem;
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         color: #fff;
+         transition: color 0.3s;
+
+         &:hover {
+            text-decoration: none;
+         }
+
+         @include phone {
+            position: relative;
+            margin: 3rem 0;
+            display: block;
+         }
+      }
+   }
+
+   .form-cadastrese {
+      width: 100%;
+
+      .input-box {
+         width:100%;
+         margin-bottom: 1rem;
+
+         input {
+            width: 100%;
+            height: 5rem;
+            line-height: 5rem;
+            border: none;
+            background-color: #fff;
+            border-radius: .5rem;
+            padding-left: 2rem;
+            font-size: 1.6rem;
+            outline: 0;
+         }
+
+         .box-select {
+            width: 100%;
+            height: 5rem;
+            line-height: 5rem;
+            background-color: #fff;
+            border-radius: .5rem;
+            overflow: hidden;
+            position: relative;
+
+            &:before {
+               content: '';
+               position: absolute;
+               top: 0;
+               right: 0;
+               width: 5rem;
+               height: 100%;
+               display: flex;
+               justify-content:center;
+               align-items: center;
+               border-left: 1px solid #666666;
+               background-image: url('../images/icon_arrow_down.png');
+               background-repeat: no-repeat;
+               background-position: center center;
+            }
+
+            select {
+               background: transparent;
+               border: none;
+               font-size: 1.6rem;
+               width: 110%;
+               height: 100%;
+               outline: 0;
+               padding-left: 2rem;
+               position: relative;
+            }
+         }
+      }
+
+      .bt-cadastrar {
+         button, input {
+            background-color: var(--color-secondary);
+            width: 100%;
+            height: 5rem;
+            line-height: 5rem;
+            border: none;
+            border-radius: .5rem;
+            color: #000;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: background-color 0.3s;
+
+            &:hover {
+               background-color: #333;
+               color: #fff;
+               text-decoration: none;
+            }
+         }
+      }
+   }
+}
