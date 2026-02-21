@@ -15,20 +15,22 @@ interface ProdutosProps {
 }
 
 function Produtos({ params }: ProdutosProps) {
+  // 1. TODOS OS HOOKS NO TOPO ABSOLUTO (Correção para a Vercel)
   const t = useTranslations("Index");
   const locale = useLocale();
+  const [showModal, setShowModal] = useState(false);
+  const [imageModal, setImageModal] = useState("");
+  const [titleModal, setTitleModal] = useState("");
 
+  // 2. CONDIÇÕES E RETURNS SEMPRE DEPOIS DOS HOOKS
   // Verificação de segurança caso o slug não exista
   const productData = products[params.slug];
   if (!productData) {
     return null; // ou um componente de Loading/404
   }
 
+  // 3. RESTANTE DA LÓGICA
   const { title, titleEn, color, description, descriptionEn, flavors } = productData;
-
-  const [showModal, setShowModal] = useState(false);
-  const [imageModal, setImageModal] = useState("");
-  const [titleModal, setTitleModal] = useState("");
 
   const titleFinal = locale === "en" ? titleEn : title;
   const descriptionFinal = locale === "en" ? descriptionEn : description;
