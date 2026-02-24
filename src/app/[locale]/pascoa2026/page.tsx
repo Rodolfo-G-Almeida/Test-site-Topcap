@@ -132,8 +132,8 @@ const getPascoaData = (locale: 'pt' | 'en'): SectionType[] => [
       },
       {
         brandLogo: "/assets/images/pascoa2026/mem logo.png",
-        logoWidth: 220, 
-        logoHeight: 120, 
+        logoWidth: 460, 
+        logoHeight: 220, 
         products: [
           { id: 34, name: "Ovo M&M's", weight: "210g", image: "/assets/images/pascoa2026/mem.png" },
         ]
@@ -177,11 +177,11 @@ const getPascoaData = (locale: 'pt' | 'en'): SectionType[] => [
   }
 ];
 
-// --- 4. LÓGICA DE CÁLCULO DE PROPORÇÃO DE ALTURA (MANTIDA INTACTA) ---
+// --- 4. LÓGICA DE CÁLCULO DE PROPORÇÃO DE ALTURA ---
 const getProductHeight = (product: ProductType, isCollab: boolean) => {
   if (isCollab) {
     if (product.id === 32) return 330; 
-    if (product.id === 34) return 305; 
+    if (product.id === 34) return 360; 
     if (product.id === 33) return 265; 
     return 255;                        
   }
@@ -231,6 +231,38 @@ export default function Pascoa2026() {
   return (
     <BaseLayout>
       <style dangerouslySetInnerHTML={{ __html: `
+        /* --- IMPORTAÇÃO DA FONTE LOCAL (FUTURA) --- */
+        
+        /* 1. Futura Regular (Para textos normais e pesos) */
+        @font-face {
+          font-family: 'FuturaWeb';
+          src: url('/fonts/Futura-Regular.otf') format('opentype'),
+               url('/fonts/Futura-Regular.ttf') format('truetype');
+          font-weight: normal; /* 400 */
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /* 2. Futura Bold (Para os Títulos e Nomes dos Produtos) */
+        @font-face {
+          font-family: 'FuturaWeb';
+          src: url('/fonts/Futura-Bold.otf') format('opentype'),
+               url('/fonts/Futura-Bold.ttf') format('truetype');
+          font-weight: bold; /* 700 */
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /* 3. Futura Condensed (Exclusivo para o texto introdutório) */
+        @font-face {
+          font-family: 'FuturaCondensed';
+          src: url('/fonts/Futura-Condensed.otf') format('opentype'),
+               url('/fonts/Futura-Condensed.ttf') format('truetype');
+          font-weight: normal; 
+          font-style: normal;
+          font-display: swap;
+        }
+
         .esconder-header-footer header, 
         .esconder-header-footer footer,
         .esconder-header-footer .header,
@@ -257,7 +289,7 @@ export default function Pascoa2026() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          margin-bottom: 3rem;
+          margin-bottom: 2rem;
         }
 
         /* --- CLASSE MÁGICA DA ANIMAÇÃO DO CANVA --- */
@@ -274,7 +306,7 @@ export default function Pascoa2026() {
         }
       `}} />
 
-      <section style={{ backgroundColor: "#fe5702", color: "#fff", paddingTop: "20px", paddingBottom: "80px", fontFamily: "'Futura', sans-serif", minHeight: "100vh", overflowX: "hidden", position: "relative" }}>
+      <section style={{ backgroundColor: "#fe5702", color: "#fff", paddingTop: "20px", paddingBottom: "80px", fontFamily: "'FuturaWeb', 'Futura', 'Trebuchet MS', Arial, sans-serif", minHeight: "100vh", overflowX: "hidden", position: "relative" }}>
         
         {/* BOTÃO DE TROCA DE IDIOMA */}
         <div style={{ position: 'absolute', top: '20px', right: '30px', zIndex: 999 }}>
@@ -303,23 +335,23 @@ export default function Pascoa2026() {
         <div className="container-fluid" style={{ maxWidth: "1400px" }}>
           
           {/* CABEÇALHO */}
-          <div className="row justify-content-center mb-5 mt-4">
+          <div className="row justify-content-center mb-4 mt-4">
             <div className="col-12 text-center animate-fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ width: "100%", maxWidth: "1100px", marginBottom: "60px" }}>
+              <div style={{ width: "100%", maxWidth: "1100px", marginBottom: "40px" }}>
                  <Image src={t.banner} alt="Banner Páscoa Topcau" width={1200} height={500} style={{ width: "100%", height: "auto", objectFit: "contain" }} priority />
               </div>
               <div className="row align-items-center w-100" style={{ maxWidth: "1100px", margin: "0 auto" }}>
-                <div className="col-md-4 text-center mb-5 mb-md-0">
+                <div className="col-md-5 text-center mb-5 mb-md-0 d-flex justify-content-center">
                   <div style={{ position: 'relative', display: 'inline-block' }}>
-                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '380px', height: '380px', background: 'radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(254,87,2,0) 65%)', zIndex: 0 }}></div>
-                    <Image src="/assets/images/pascoa2026/m marilan.png" alt="Coração com Ovo de Páscoa" width={400} height={400} style={{ maxWidth: "300px", width: "100%", height: "auto", position: 'relative', zIndex: 1 }} />
+                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 30%, rgba(254,87,2,0) 65%)', zIndex: 0 }}></div>
+                    <Image src="/assets/images/pascoa2026/m marilan.png" alt="Coração com Ovo de Páscoa" width={400} height={400} style={{ maxWidth: "430px", width: "100%", height: "auto", position: 'relative', zIndex: 1 }} />
                   </div>
                 </div>
-                <div className="col-md-8 d-flex justify-content-end">
-                  <div style={{ textAlign: "right", maxWidth: "780px" }}>
-                    <p style={{ fontSize: "18px", lineHeight: "1.7", fontWeight: 400, marginBottom: "20px" }}>{t.intro1}</p>
-                    <p style={{ fontSize: "18px", lineHeight: "1.7", fontWeight: 400, marginBottom: "20px" }}>{t.intro2}</p>
-                    <p style={{ fontSize: "18px", lineHeight: "1.7", fontWeight: 400, marginBottom: "0" }}>{t.intro3}</p>
+                <div className="col-md-7 d-flex justify-content-end">
+                  <div style={{ textAlign: "right", maxWidth: "600px", fontFamily: "'FuturaCondensed', 'FuturaWeb', sans-serif" }}>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }}>{t.intro1}</p>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }}>{t.intro2}</p>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "0", letterSpacing: "0.2px" }}>{t.intro3}</p>
                   </div>
                 </div>
               </div>
@@ -328,12 +360,14 @@ export default function Pascoa2026() {
 
           {/* RENDERIZAÇÃO DAS CATEGORIAS */}
           {pascoaData.map((section, index) => (
-            <div key={index} style={{ marginBottom: "80px", marginTop: "40px" }}>
+            <div key={index} style={{ marginBottom: "60px", marginTop: "40px" }}>
               
-              {/* TÍTULO DA SEÇÃO ANIMADO */}
-              <div className="row mb-5 align-items-center w-100 mx-0 animate-fade-up">
+              {/* TÍTULO DA SEÇÃO ANIMADO - MARGEM INFERIOR REDUZIDA PARA COLAR O TÍTULO AOS PRODUTOS */}
+              <div className="row align-items-center w-100 mx-0 animate-fade-up" style={{ marginBottom: section.category === "Collabs" ? "15px" : "-5px", position: "relative", zIndex: 2 }}>
                 <div className="col-12 position-relative d-flex justify-content-center">
-                  <h3 style={{ fontSize: "2rem", fontWeight: "bold", margin: 0 }}>{section.category}</h3>
+                  <h3 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: "bold", margin: 0, textAlign: "center", lineHeight: "1" }}>
+                    {section.category}
+                  </h3>
                   {section.tag && (
                     <span className="position-absolute end-0 d-none d-md-flex align-items-center" style={{ backgroundColor: "#fff", color: "#fe5702", padding: "8px 25px", borderRadius: "30px", fontWeight: "bold", fontSize: "14px", top: "50%", transform: "translateY(-50%)" }}>{section.tag}</span>
                   )}
@@ -345,94 +379,130 @@ export default function Pascoa2026() {
                 )}
               </div>
 
-              {/* CONTEÚDO DA SEÇÃO */}
-              <div className={`row justify-content-center ${section.speechBubble ? 'align-items-center' : 'align-items-end'}`}>
+              {/* CONTEÚDO DA SEÇÃO (mt-0 para aproximar os produtos do título) */}
+              <div className={`row justify-content-center ${section.speechBubble ? 'align-items-center' : 'align-items-end'} mt-0 position-relative`}>
                 
                 {/* Balão Animado */}
                 {section.speechBubble && (
-                  <div className="col-12 col-md-3 d-flex justify-content-center justify-content-md-end mb-4 mb-md-0 pe-md-4 animate-fade-up">
-                    <div style={{ backgroundColor: "#fff", color: "#fe5702", padding: "25px", borderRadius: "40px", fontWeight: "900", fontSize: "15px", lineHeight: "1.4", maxWidth: "200px", textAlign: "center", boxShadow: "0 5px 15px rgba(0,0,0,0.15)" }}>
-                      <span dangerouslySetInnerHTML={{ __html: section.speechBubble }} />
+                  <>
+                    {/* Mobile View */}
+                    <div className="col-12 d-block d-md-none mb-4 d-flex justify-content-center animate-fade-up">
+                      <div style={{ backgroundColor: "#fff", color: "#fe5702", padding: "20px 25px", borderRadius: "40px", fontWeight: "bold", fontSize: "15px", lineHeight: "1.4", maxWidth: "200px", textAlign: "center", boxShadow: "0 5px 15px rgba(0,0,0,0.15)" }}>
+                        <span dangerouslySetInnerHTML={{ __html: section.speechBubble }} />
+                      </div>
                     </div>
-                  </div>
+                    {/* Desktop View: top: '70px' para descer o balão, mantendo-o flutuante */}
+                    <div className="d-none d-md-flex position-absolute" style={{ left: '5%', top: '70px', height: '320px', alignItems: 'center', width: 'auto', zIndex: 10 }}>
+                      <div className="animate-fade-up" style={{ backgroundColor: "#fff", color: "#fe5702", padding: "20px 25px", borderRadius: "40px", fontWeight: "bold", fontSize: "15px", lineHeight: "1.4", maxWidth: "200px", textAlign: "center", boxShadow: "0 5px 15px rgba(0,0,0,0.15)" }}>
+                        <span dangerouslySetInnerHTML={{ __html: section.speechBubble }} />
+                      </div>
+                    </div>
+                  </>
                 )}
 
                 {/* LÓGICA DE RENDERIZAÇÃO */}
                 {section.brandGroups ? (
-                  // --- LAYOUT ESPECIAL PARA COLLABS ---
-                  <div className="col-12 d-flex flex-wrap justify-content-center align-items-end" style={{ gap: "2rem" }}>
-                    {section.brandGroups.map((group, gIndex) => {
-                      const isPacoquita = group.brandLogo.includes("pacoquita");
-                      const isMem = group.brandLogo.includes("mem");
-
-                      let logoTransform = "none";
-                      if (isPacoquita) {
-                        logoTransform = "rotate(12deg) scale(1.1)";
-                      } else if (isMem) {
-                        logoTransform = "rotate(8deg) scale(1.1)"; 
-                      }
-
-                      return (
-                        <div key={gIndex} className="d-flex flex-column align-items-center">
+                  
+                  // --- LAYOUT COLLABS ---
+                  <div className="col-12 w-100">
+                    
+                    {/* DESKTOP */}
+                    <div className="d-none d-lg-flex flex-column w-100">
+                      <div className="d-flex w-100 justify-content-between align-items-center mb-0">
+                        {section.brandGroups.map((group, gIndex) => {
+                          const isPacoquita = group.brandLogo.includes("pacoquita");
+                          const isMem = group.brandLogo.includes("mem");
+                          const isFini = group.brandLogo.includes("fini");
                           
-                          {/* Logo Animado */}
-                          <div className="animate-fade-up" style={{ height: "120px", marginBottom: "20px", display: 'flex', alignItems: 'flex-end', justifyContent: 'center', transitionDelay: `${gIndex * 0.1}s` }}>
-                             <Image 
-                                src={group.brandLogo} 
-                                alt="Logo parceiro" 
-                                width={group.logoWidth} 
-                                height={group.logoHeight} 
-                                style={{ 
-                                  objectFit: "contain", 
-                                  maxHeight: "100%", 
-                                  transform: logoTransform,
-                                  transformOrigin: "center bottom"
-                                }} 
-                             />
-                          </div>
-                          
-                          {/* Produtos da Marca */}
-                          <div className="d-flex justify-content-center flex-wrap" style={{ gap: "2rem" }}>
-                            {group.products.map((product, pIndex) => (
-                              // PRODUTO ANIMADO EM CASCATA 
-                              <div key={product.id} className="animate-fade-up" style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "250px", textAlign: "center", transitionDelay: `${(gIndex + pIndex + 1) * 0.1}s` }}>
-                                
-                                <div style={{ 
-                                  width: "100%", 
-                                  height: "360px", 
-                                  display: "flex", 
-                                  alignItems: "flex-end", 
-                                  justifyContent: "center",
-                                  marginBottom: "8px" 
-                                }}>
-                                  <div style={{ 
-                                    width: "100%", 
-                                    height: `${getProductHeight(product, true)}px`, 
-                                    position: "relative" 
-                                  }}>
-                                    <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain", objectPosition: "bottom" }} />
-                                  </div>
-                                </div>
-                                
-                                <h4 style={{ fontSize: "18px", fontWeight: "bold", margin: "0 0 2px 0", lineHeight: "1.2" }}>{product.name}</h4>
-                                <p style={{ fontSize: "16px", margin: "0", lineHeight: "1.2" }}>{product.weight}</p>
+                          // Ajustes feitos por você, mantidos intocáveis
+                          let logoTransform = "none";
+                          if (isPacoquita) {
+                            logoTransform = "rotate(12deg) scale(1.1) translateY(15px)"; 
+                          } else if (isMem) {
+                            logoTransform = "rotate(8deg) translateY(5px)"; 
+                          } else if (isFini) {
+                            logoTransform = "translateX(-60px) translateY(5px)";
+                          }
+
+                          return (
+                            <div key={`desk-logo-${gIndex}`} className="animate-fade-up d-flex justify-content-center" style={{ flex: group.products.length, transitionDelay: `${gIndex * 0.1}s` }}>
+                              <Image 
+                                 src={group.brandLogo} 
+                                 alt="Logo parceiro" 
+                                 width={group.logoWidth} 
+                                 height={group.logoHeight} 
+                                 style={{ objectFit: "contain", transform: logoTransform, transformOrigin: "center center" }} 
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div className="d-flex w-100 justify-content-between align-items-end">
+                        {section.brandGroups.flatMap(bg => bg.products).map((product, pIndex) => (
+                          <div key={`desk-prod-${product.id}`} className="animate-fade-up d-flex flex-column align-items-center" style={{ flex: "1 1 0", padding: "0 10px", transitionDelay: `${pIndex * 0.1}s` }}>
+                            <div style={{ width: "100%", height: "360px", display: "flex", alignItems: "flex-end", justifyContent: "center", marginBottom: "8px" }}>
+                              <div style={{ width: "100%", height: `${getProductHeight(product, true)}px`, position: "relative", maxWidth: "240px" }}>
+                                <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain", objectPosition: "bottom" }} />
                               </div>
-                            ))}
+                            </div>
+                            <h4 style={{ fontSize: "18px", fontWeight: "bold", margin: "0 0 2px 0", lineHeight: "1.2", textAlign: "center" }}>{product.name}</h4>
+                            <p style={{ fontSize: "16px", fontWeight: "normal", margin: "0", lineHeight: "1.2", textAlign: "center" }}>{product.weight}</p>
                           </div>
-                          
-                        </div>
-                      );
-                    })}
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* MOBILE */}
+                    <div className="d-flex d-lg-none flex-column w-100">
+                      {section.brandGroups.map((group, gIndex) => {
+                         const isPacoquita = group.brandLogo.includes("pacoquita");
+                         const isMem = group.brandLogo.includes("mem");
+                         
+                         let logoTransform = "none";
+                         if (isPacoquita) {
+                           logoTransform = "rotate(12deg) scale(1.1)"; 
+                         } else if (isMem) {
+                           logoTransform = "rotate(8deg)"; 
+                         }
+
+                         return (
+                           <div key={`mob-group-${gIndex}`} className="d-flex flex-column align-items-center w-100 mb-5">
+                             <div className="animate-fade-up mb-4" style={{ display: 'flex', justifyContent: 'center' }}>
+                               <Image 
+                                  src={group.brandLogo} 
+                                  alt="Logo parceiro" 
+                                  width={group.logoWidth * 0.8} 
+                                  height={group.logoHeight * 0.8} 
+                                  style={{ objectFit: "contain", transform: logoTransform }} 
+                               />
+                             </div>
+                             <div className="d-flex flex-wrap justify-content-center w-100" style={{ gap: "1.5rem" }}>
+                               {group.products.map((product, pIndex) => (
+                                 <div key={`mob-prod-${product.id}`} className="d-flex flex-column align-items-center" style={{ width: "220px", transitionDelay: `${pIndex * 0.1}s` }}>
+                                   <div style={{ width: "100%", height: "320px", display: "flex", alignItems: "flex-end", justifyContent: "center", marginBottom: "8px" }}>
+                                     <div style={{ width: "100%", height: `${getProductHeight(product, true) * 0.85}px`, position: "relative" }}>
+                                       <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain", objectPosition: "bottom" }} />
+                                     </div>
+                                   </div>
+                                   <h4 style={{ fontSize: "18px", fontWeight: "bold", margin: "0 0 2px 0", textAlign: "center" }}>{product.name}</h4>
+                                   <p style={{ fontSize: "16px", fontWeight: "normal", margin: "0", textAlign: "center" }}>{product.weight}</p>
+                                 </div>
+                               ))}
+                             </div>
+                           </div>
+                         );
+                      })}
+                    </div>
                   </div>
                 ) : (
-                  // --- LAYOUT PADRÃO DE GRADE PARA OUTRAS SEÇÕES ---
+                  // --- LAYOUT PADRÃO DE GRADE ---
                   section.products?.map((product, pIndex) => (
-                    // PRODUTOS NORMAIS ANIMADOS EM CASCATA
                     <div key={product.id} className="col-6 col-md-3 product-card animate-fade-up" style={{ transitionDelay: `${pIndex * 0.15}s` }}>
                       
                       <div style={{ 
                         width: "100%", 
-                        height: "340px", 
+                        height: "320px", 
                         display: "flex", 
                         alignItems: "flex-end", 
                         justifyContent: "center",
@@ -449,14 +519,10 @@ export default function Pascoa2026() {
                       </div>
                       
                       <h4 style={{ fontSize: "18px", fontWeight: "bold", margin: "0 0 2px 0", lineHeight: "1.2" }}>{product.name}</h4>
-                      <p style={{ fontSize: "16px", margin: "0", lineHeight: "1.2" }}>{product.weight}</p>
+                      <p style={{ fontSize: "16px", fontWeight: "normal", margin: "0", lineHeight: "1.2" }}>{product.weight}</p>
                       
                       {product.button && (
-                        product.videoSrc ? (
-                          <button onClick={() => setActiveVideo(product.videoSrc!)} style={{ backgroundColor: "#fff", color: "#fe5702", padding: "10px 20px", borderRadius: "30px", fontSize: "13px", fontWeight: "bold", textDecoration: "underline", marginTop: "15px", display: "inline-block", border: "none", cursor: "pointer" }}>{product.button}</button>
-                        ) : (
-                          <Link href={product.link || "#"} style={{ backgroundColor: "#fff", color: "#fe5702", padding: "10px 20px", borderRadius: "30px", fontSize: "13px", fontWeight: "bold", textDecoration: "underline", marginTop: "15px", display: "inline-block" }}>{product.button}</Link>
-                        )
+                        <button onClick={() => setActiveVideo(product.videoSrc!)} style={{ backgroundColor: "#fff", color: "#fe5702", padding: "10px 20px", borderRadius: "30px", fontSize: "13px", fontWeight: "bold", textDecoration: "underline", marginTop: "15px", border: "none", cursor: "pointer" }}>{product.button}</button>
                       )}
                     </div>
                   ))
@@ -465,28 +531,32 @@ export default function Pascoa2026() {
             </div>
           ))}
 
-          {/* RODAPÉ ANIMADO */}
+          {/* RODAPÉ EM 2 COLUNAS */}
           <div className="row mt-5 pt-5 justify-content-center animate-fade-up" style={{ borderTop: "1px solid rgba(255,255,255,0.2)" }}>
             <div className="col-12 text-center mb-5">
-              <h3 style={{ fontWeight: "bold" }}>{t.footerWhere}</h3>
+              <h3 style={{ fontWeight: "900", fontSize: "2rem" }}>{t.footerWhere}</h3>
             </div>
+            
+            {/* Coluna 1: Top Cau */}
             <div className="col-12 col-md-6 mb-5 d-flex flex-column align-items-center text-center">
-              <h4 style={{ fontSize: "16px", marginBottom: "20px", fontWeight: "normal" }}>{t.footerStore}</h4>
+              <h4 style={{ fontSize: "18px", marginBottom: "20px", fontWeight: "bold" }}>{t.footerStore}</h4>
               <a href="https://maps.app.goo.gl/LG5pYy5KDWr2SJcH6" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#fff", color: "#fe5702", borderRadius: "30px", padding: "12px 30px", display: "inline-block", fontSize: "16px", fontWeight: "bold", textDecoration: "underline", marginBottom: "35px", whiteSpace: "nowrap" }}>R. Cel. Emídio Piedade, 378 - Brás - São Paulo - SP</a>
               <div style={{ height: "150px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "15px" }}>
                 <Image src="/assets/images/logo_topcau_v2.png" alt="Top Cau" width={300} height={150} style={{ objectFit: "contain" }} />
               </div>
-              <a href="https://www.instagram.com/topcauchocolates/" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline", fontSize: "16px", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <a href="https://www.instagram.com/topcauchocolates/" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline", fontSize: "16px", display: "inline-flex", alignItems: "center", gap: "8px", fontWeight: "normal" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="ig-grad1" x1="20%" y1="100%" x2="80%" y2="0%"><stop offset="0%" stopColor="#fdf497" /><stop offset="5%" stopColor="#fdf497" /><stop offset="45%" stopColor="#fd5949" /><stop offset="60%" stopColor="#d6249f" /><stop offset="90%" stopColor="#285AEB" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad1)" /><path fill="#fff" d="M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 7.4a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3.8-8.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/><path fill="#fff" d="M12 5.3c2.2 0 2.4 0 3.3.05a4.5 4.5 0 0 1 1.5.28 2.5 2.5 0 0 1 1.4 1.4 4.5 4.5 0 0 1 .28 1.5c.04.9.04 1.1.04 3.3s0 2.4-.05 3.3a4.5 4.5 0 0 1-.28 1.5 2.5 2.5 0 0 1-1.4 1.4 4.5 4.5 0 0 1-1.5.28c-.9.04-1.1.04-3.3.04s-2.4 0-3.3-.05a4.5 4.5 0 0 1-1.5-.28 2.5 2.5 0 0 1-1.4-1.4 4.5 4.5 0 0 1-.28-1.5C5.3 14.4 5.3 14.2 5.3 12s0-2.4.05-3.3a4.5 4.5 0 0 1 .28-1.5 2.5 2.5 0 0 1 1.4-1.4 4.5 4.5 0 0 1 1.5-.28C9.6 5.3 9.8 5.3 12 5.3m0-1.8c-2.2 0-2.5.01-3.4.05a6.3 6.3 0 0 0-2 .38 4.3 4.3 0 0 0-2.4 2.4 6.3 6.3 0 0 0-.38 2C3.81 9.3 3.8 9.6 3.8 11.8s.01 2.5.05 3.4a6.3 6.3 0 0 0 .38 2 4.3 4.3 0 0 0 2.4 2.4 6.3 6.3 0 0 0 2 .38c.9.04 1.2.05 3.4.05s2.5-.01 3.4-.05a6.3 6.3 0 0 0 2-.38 4.3 4.3 0 0 0 2.4-2.4 6.3 6.3 0 0 0 .38-2c.04-.9.05-1.2.05-3.4s-.01-2.5-.05-3.4a6.3 6.3 0 0 0-.38-2 4.3 4.3 0 0 0-2.4-2.4 6.3 6.3 0 0 0-2-.38C14.5 3.51 14.2 3.5 12 3.5z"/></svg> topcauchocolates
               </a>
             </div>
+
+            {/* Coluna 2: Grupo Marilan */}
             <div className="col-12 col-md-6 mb-5 d-flex flex-column align-items-center text-center">
-              <h4 style={{ fontSize: "16px", marginBottom: "20px", fontWeight: "normal" }}>{t.footerGroup}</h4>
+              <h4 style={{ fontSize: "18px", marginBottom: "20px", fontWeight: "bold" }}>{t.footerGroup}</h4>
               <a href="https://www.grupomarilan.com.br/lojas" target="_blank" rel="noopener noreferrer" style={{ backgroundColor: "#fff", color: "#fe5702", borderRadius: "30px", padding: "12px 30px", display: "inline-block", fontSize: "16px", fontWeight: "bold", textDecoration: "underline", marginBottom: "35px", whiteSpace: "nowrap" }}>{t.footerButton}</a>
               <div style={{ height: "150px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "15px" }}>
                 <Image src="/assets/images/pascoa2026/logo.webp" alt="Grupo Marilan" width={160} height={80} style={{ objectFit: "contain", mixBlendMode: "screen" }} />
               </div>
-              <a href="https://www.instagram.com/marilanalimentos/" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline", fontSize: "16px", display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <a href="https://www.instagram.com/marilanalimentos/" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "underline", fontSize: "16px", display: "inline-flex", alignItems: "center", gap: "8px", fontWeight: "normal" }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><defs><linearGradient id="ig-grad2" x1="20%" y1="100%" x2="80%" y2="0%"><stop offset="0%" stopColor="#fdf497" /><stop offset="5%" stopColor="#fdf497" /><stop offset="45%" stopColor="#fd5949" /><stop offset="60%" stopColor="#d6249f" /><stop offset="90%" stopColor="#285AEB" /></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad2)" /><path fill="#fff" d="M12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zm0 7.4a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3.8-8.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/><path fill="#fff" d="M12 5.3c2.2 0 2.4 0 3.3.05a4.5 4.5 0 0 1 1.5.28 2.5 2.5 0 0 1 1.4 1.4 4.5 4.5 0 0 1 .28 1.5c.04.9.04 1.1.04 3.3s0 2.4-.05 3.3a4.5 4.5 0 0 1-.28 1.5 2.5 2.5 0 0 1-1.4 1.4 4.5 4.5 0 0 1-1.5.28c-.9.04-1.1.04-3.3.04s-2.4 0-3.3-.05a4.5 4.5 0 0 1-1.5-.28 2.5 2.5 0 0 1-1.4-1.4 4.5 4.5 0 0 1-.28-1.5C5.3 14.4 5.3 14.2 5.3 12s0-2.4.05-3.3a4.5 4.5 0 0 1 .28-1.5 2.5 2.5 0 0 1 1.4-1.4 4.5 4.5 0 0 1 1.5-.28C9.6 5.3 9.8 5.3 12 5.3m0-1.8c-2.2 0-2.5.01-3.4.05a6.3 6.3 0 0 0-2 .38 4.3 4.3 0 0 0-2.4 2.4 6.3 6.3 0 0 0-.38 2C3.81 9.3 3.8 9.6 3.8 11.8s.01 2.5.05 3.4a6.3 6.3 0 0 0 .38 2 4.3 4.3 0 0 0 2.4 2.4 6.3 6.3 0 0 0 2 .38c.9.04 1.2.05 3.4.05s2.5-.01 3.4-.05a6.3 6.3 0 0 0 2-.38 4.3 4.3 0 0 0 2.4-2.4 6.3 6.3 0 0 0 .38-2c.04-.9.05-1.2.05-3.4s-.01-2.5-.05-3.4a6.3 6.3 0 0 0-.38-2 4.3 4.3 0 0 0-2.4-2.4 6.3 6.3 0 0 0-2-.38C14.5 3.51 14.2 3.5 12 3.5z"/></svg> marilanalimentos
               </a>
             </div>
