@@ -36,9 +36,9 @@ type SectionType = {
 const pageContent = {
   pt: {
     banner: "/assets/images/pascoa2026/Banner top cau pascoa 2026.png",
-    intro1: "A Páscoa é feita de momentos que unem gerações, o encanto das crianças, a nostalgia dos adultos e o sabor que aproxima todos à mesa.",
-    intro2: "A Top Cau, que integra Grupo Marilan, faz parte dessa história com produtos que despertam sorrisos e criam lembranças, unindo diversão e carinho de marcas que estão presentes na vida dos consumidores.",
-    intro3: "Em 2026, essa celebração chega com novos sabores, personagens e experiências, tornando a Páscoa ainda mais especial.",
+    intro1: "A <strong>Páscoa</strong> é feita de momentos que unem gerações, o encanto das crianças, a nostalgia dos adultos e o sabor que aproxima todos à mesa.",
+    intro2: "A <strong>Top Cau</strong>, que integra <strong>Grupo Marilan</strong>, faz parte dessa história com produtos que despertam sorrisos e criam lembranças, unindo diversão e carinho de marcas que estão presentes na vida dos consumidores.",
+    intro3: "Em 2026, essa celebração chega com novos sabores, personagens e experiências, tornando a <strong>Páscoa</strong> ainda mais especial.",
     footerWhere: "Onde encontrar?",
     footerStore: "Loja Top Cau Chocolates",
     footerGroup: "Lojas do Grupo Marilan",
@@ -46,9 +46,9 @@ const pageContent = {
   },
   en: {
     banner: "/assets/images/pascoa2026/Banner top cau pascoa 2026_ingles.png",
-    intro1: "Easter is made of moments that bring generations together: the wonder of children, the nostalgia of adults, and the flavors that gather everyone around the table.",
-    intro2: "Top Cau, as part of the Marilan Group, is proud to be part of this story with products that spark smiles and create lasting memories, blending the fun and care of brands that are present in consumers' lives.",
-    intro3: "In 2026, this celebration arrives with new flavors, characters, and experiences, making Easter even more special.",
+    intro1: "<strong>Easter</strong> is made of moments that bring generations together: the wonder of children, the nostalgia of adults, and the flavors that gather everyone around the table.",
+    intro2: "<strong>Top Cau</strong>, as part of the <strong>Marilan Group</strong>, is proud to be part of this story with products that spark smiles and create lasting memories, blending the fun and care of brands that are present in consumers' lives.",
+    intro3: "In 2026, this celebration arrives with new flavors, characters, and experiences, making <strong>Easter</strong> even more special.",
     footerWhere: "Where to find",
     footerStore: "Top Cau Chocolates Stores",
     footerGroup: "Grupo Marilan Stores",
@@ -349,9 +349,9 @@ export default function Pascoa2026() {
                 </div>
                 <div className="col-md-7 d-flex justify-content-end">
                   <div style={{ textAlign: "right", maxWidth: "600px", fontFamily: "'FuturaCondensed', 'FuturaWeb', sans-serif" }}>
-                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }}>{t.intro1}</p>
-                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }}>{t.intro2}</p>
-                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "0", letterSpacing: "0.2px" }}>{t.intro3}</p>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }} dangerouslySetInnerHTML={{ __html: t.intro1 }}></p>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "20px", letterSpacing: "0.2px" }} dangerouslySetInnerHTML={{ __html: t.intro2 }}></p>
+                    <p style={{ fontSize: "19px", lineHeight: "1.4", fontWeight: "normal", marginBottom: "0", letterSpacing: "0.2px" }} dangerouslySetInnerHTML={{ __html: t.intro3 }}></p>
                   </div>
                 </div>
               </div>
@@ -362,7 +362,7 @@ export default function Pascoa2026() {
           {pascoaData.map((section, index) => (
             <div key={index} style={{ marginBottom: "60px", marginTop: "40px" }}>
               
-              {/* TÍTULO DA SEÇÃO ANIMADO - MARGEM INFERIOR REDUZIDA PARA COLAR O TÍTULO AOS PRODUTOS */}
+              {/* TÍTULO DA SEÇÃO ANIMADO */}
               <div className="row align-items-center w-100 mx-0 animate-fade-up" style={{ marginBottom: section.category === "Collabs" ? "15px" : "-5px", position: "relative", zIndex: 2 }}>
                 <div className="col-12 position-relative d-flex justify-content-center">
                   <h3 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: "bold", margin: 0, textAlign: "center", lineHeight: "1" }}>
@@ -372,21 +372,22 @@ export default function Pascoa2026() {
                     <span className="position-absolute end-0 d-none d-md-flex align-items-center" style={{ backgroundColor: "#fff", color: "#fe5702", padding: "8px 25px", borderRadius: "30px", fontWeight: "bold", fontSize: "14px", top: "50%", transform: "translateY(-50%)" }}>{section.tag}</span>
                   )}
                 </div>
+                {/* AQUI FOI ADICIONADO mb-3 PARA O MOBILE PARA SEPARAR A TAG DO BALÃO! */}
                 {section.tag && (
-                  <div className="col-12 text-center d-md-none mt-3">
+                  <div className="col-12 text-center d-md-none mt-3 mb-3">
                     <span style={{ backgroundColor: "#fff", color: "#fe5702", padding: "6px 20px", borderRadius: "25px", fontWeight: "bold", fontSize: "12px" }}>{section.tag}</span>
                   </div>
                 )}
               </div>
 
-              {/* CONTEÚDO DA SEÇÃO (mt-0 para aproximar os produtos do título) */}
-              <div className={`row justify-content-center ${section.speechBubble ? 'align-items-center' : 'align-items-end'} mt-0 position-relative`}>
+              {/* CONTEÚDO DA SEÇÃO */}
+              <div className={`row justify-content-center ${section.speechBubble ? 'align-items-center' : 'align-items-end'} mt-1 position-relative`}>
                 
                 {/* Balão Animado */}
                 {section.speechBubble && (
                   <>
-                    {/* Mobile View */}
-                    <div className="col-12 d-block d-md-none mb-4 d-flex justify-content-center animate-fade-up">
+                    {/* Mobile View: mt-2 e mb-5 para dar respiro acima e afastar dos copos abaixo */}
+                    <div className="col-12 d-block d-md-none mt-2 mb-5 d-flex justify-content-center animate-fade-up">
                       <div style={{ backgroundColor: "#fff", color: "#fe5702", padding: "20px 25px", borderRadius: "40px", fontWeight: "bold", fontSize: "15px", lineHeight: "1.4", maxWidth: "200px", textAlign: "center", boxShadow: "0 5px 15px rgba(0,0,0,0.15)" }}>
                         <span dangerouslySetInnerHTML={{ __html: section.speechBubble }} />
                       </div>
@@ -408,13 +409,12 @@ export default function Pascoa2026() {
                     
                     {/* DESKTOP */}
                     <div className="d-none d-lg-flex flex-column w-100">
-                      <div className="d-flex w-100 justify-content-between align-items-center mb-0">
+                      <div className="d-flex w-100 justify-content-between align-items-center" style={{ marginBottom: "-70px" }}>
                         {section.brandGroups.map((group, gIndex) => {
                           const isPacoquita = group.brandLogo.includes("pacoquita");
                           const isMem = group.brandLogo.includes("mem");
                           const isFini = group.brandLogo.includes("fini");
                           
-                          // Ajustes feitos por você, mantidos intocáveis
                           let logoTransform = "none";
                           if (isPacoquita) {
                             logoTransform = "rotate(12deg) scale(1.1) translateY(15px)"; 
